@@ -55,3 +55,5 @@ gem 'tzinfo-data'#, platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'net-smtp', '~> 0.3.1'
 
 gem "simple_form", "~> 5.1"
+
+gem "kaminari", "~> 1.2"
