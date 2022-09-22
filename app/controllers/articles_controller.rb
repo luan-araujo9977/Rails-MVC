@@ -3,8 +3,14 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
 
   def index
+    @highlights = Article.desc_order.first(3)
+
     current_page = (params[:page] || 1).to_i
-    @articles = Article.order(created_at: :desc).page(current_page).per(2)
+    highlights_ids = @highlights.pluck(:id).join(',')
+
+    @articles = Article.wihout_highlights(highlights_ids)
+                       .desc_order
+                       .page(current_page).per(2)
   end
 
   def show; end
