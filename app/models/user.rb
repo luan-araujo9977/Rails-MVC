@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
 
@@ -12,4 +13,14 @@ class User < ApplicationRecord
          :rememberable,
          :trackable,
          :validatable
+
+  validate :password_complexity
+
+  private
+
+  def password_complexity
+    return if password.nil?
+
+    errors.add :password, :complexity unless CheckPasswordComplexityService.call(password)
+  end
 end
