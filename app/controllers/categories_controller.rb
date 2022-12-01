@@ -18,6 +18,7 @@ class CategoriesController < ApplicationController
   end
 
   # POST /categories or /categories.json
+  # rubocop:disable Metrics/MethodLength
   def create
     @category = Category.new(category_params)
     authorize @category
@@ -32,6 +33,7 @@ class CategoriesController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
